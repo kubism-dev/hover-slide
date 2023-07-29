@@ -10,17 +10,35 @@
 		<script src="slider.js"></script>
 		<script src="app.js"></script>
 		<style>
+			h1 {
+				font-family: Arial, Helvetica, sans-serif;
+				display: block;
+				text-align: center;
+				padding-bottom: 1vw;
+			}
+
 			.grid {
 				display: flex;
-				padding: 2rem;
+				flex-wrap: wrap;
+				padding: 0.5rem;
 			}
+
 			.col-1 {
-				width: 50%;
-				flex: 0 1 50%;
 				padding: 1rem;
+				width: 100%;
+				flex: 0 1 100%;
 			}
+
+			@media screen and (min-width: 40em) {
+				.col-1 {
+					width: calc(50% - 2rem);
+					flex: 0 1 calc(50% - 2rem);
+				}
+			}
+
 			.c-slider-wrap {
 				touch-action: none;
+				aspect-ratio: 16/9;
 			}
 
 			.c-slider-wrap--touch {
@@ -48,11 +66,18 @@
 			.c-slider__item img {
 				width: 100%;
 				height: 100%;
-				transition: transform 0.3s ease-in-out;
+				transition: transform 0.3s ease-in-out, opacity 0.1s ease-in-out;
 				user-select: none;
 				object-fit: cover;
 			}
 
+			.is-lazy {
+				opacity: 0;
+			}
+
+			.is-loaded {
+				opacity: 1;
+			}
 			.c-slider--touch {
 				height: auto;
 				display: inline-flex;
@@ -80,56 +105,65 @@
 		</style>
 	</head>
 	<body>
+		<h1>Slide => hover => swipe.</h1>
 		<div class="grid">
 			<div class="col-1">
 				<div class="c-slider-wrap">
 					<div class="c-slider">
 						<div class="c-slider__item">
 							<img
-								src="img/01.jpg"
+								data-src="img/01.jpg"
 								alt=""
+								class="is-lazy"
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/02.jpg"
+								data-src="img/02.jpg"
 								alt=""
+								class="is-lazy"
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/03.jpg"
+								data-src="img/03.jpg"
 								alt=""
+								class="is-lazy"
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/04.jpg"
+								data-src="img/04.jpg"
 								alt=""
+								class="is-lazy"
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/01.jpg"
+								data-src="img/01.jpg"
 								alt=""
+								class="is-lazy"
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/02.jpg"
+								data-src="img/02.jpg"
 								alt=""
+								class="is-lazy"
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/03.jpg"
+								data-src="img/03.jpg"
 								alt=""
+								class="is-lazy"
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/04.jpg"
+								data-src="img/04.jpg"
 								alt=""
+								class="is-lazy"
 							/>
 						</div>
 					</div>
@@ -140,85 +174,85 @@
 					<div class="c-slider">
 						<div class="c-slider__item">
 							<img
-								src="img/01.jpg"
+								data-src="img/01.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/02.jpg"
+								data-src="img/02.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/03.jpg"
+								data-src="img/03.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/04.jpg"
+								data-src="img/04.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/01.jpg"
+								data-src="img/01.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/02.jpg"
+								data-src="img/02.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/03.jpg"
+								data-src="img/03.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/04.jpg"
+								data-src="img/04.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/01.jpg"
+								data-src="img/01.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/02.jpg"
+								data-src="img/02.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/01.jpg"
+								data-src="img/01.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/02.jpg"
+								data-src="img/02.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/01.jpg"
+								data-src="img/01.jpg"
 								alt=""
 							/>
 						</div>
 						<div class="c-slider__item">
 							<img
-								src="img/02.jpg"
+								data-src="img/02.jpg"
 								alt=""
 							/>
 						</div>

@@ -1,6 +1,5 @@
 class Slider {
-	constructor(selector) {
-		console.log(selector);
+	constructor(selector, options) {
 		this.slider =
 			selector instanceof Element ? selector : document.querySelector(selector);
 		this.class =
@@ -13,6 +12,11 @@ class Slider {
 		this.currentTranslate = 0;
 		this.prevTranslate = 0;
 		this.currentIndex = 0;
+		this.options = {
+			lazyload: options.lazyload || false,
+		};
+
+		if (this.options.lazyload) this.lazyLoadImages(this.images[0]);
 
 		this.init();
 	}
@@ -31,6 +35,16 @@ class Slider {
 		}
 	};
 
+	// Initialize lazy loading for images
+	lazyLoadImages(index) {
+		const img = index?.getElementsByTagName('img')[0];
+		if (img.dataset.src) {
+			img.src = img.dataset.src;
+			img.removeAttribute('data-src');
+			img.classList.add('is-loaded');
+		}
+	}
+
 	handleMouseMove = (e) => {
 		const x = e.offsetX;
 		const sliderWidth = this.slider.offsetWidth;
@@ -38,8 +52,10 @@ class Slider {
 		const index = Math.floor(percentage * this.images.length);
 
 		if (index > this.images.length - 1) return;
-
 		this.images.forEach((image) => (image.style.zIndex = 0));
+
+		if (this.options.lazyload) this.lazyLoadImages(this.images[index]);
+
 		this.images[index].style.zIndex = 1;
 	};
 
@@ -84,6 +100,9 @@ class Slider {
 			this.currentIndex += 1;
 
 		if (movedBy > 100 && this.currentIndex > 0) this.currentIndex -= 1;
+
+		if (this.options.lazyload)
+			this.lazyLoadImages(this.images[this.currentIndex]);
 
 		this.setPositionByIndex();
 		this.slider.classList.remove('is-touched');
