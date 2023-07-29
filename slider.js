@@ -1,7 +1,12 @@
 class Slider {
 	constructor(selector) {
-		this.slider = document.querySelector(selector);
-		this.class = selector.replace('.', '');
+		console.log(selector);
+		this.slider =
+			selector instanceof Element ? selector : document.querySelector(selector);
+		this.class =
+			selector instanceof Element
+				? selector.classList[0]
+				: selector.replace('.', '');
 		this.images = [...this.slider.children];
 		this.isDragging = false;
 		this.startPos = 0;
@@ -13,6 +18,8 @@ class Slider {
 	}
 
 	init = () => {
+		this.slider.classList.add('is-init');
+
 		if (window.matchMedia('(pointer: fine)').matches) {
 			this.slider.addEventListener('mousemove', (e) => this.handleMouseMove(e));
 			this.slider.classList.add(`${this.class}--hover`);
