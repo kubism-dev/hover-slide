@@ -35,7 +35,7 @@ class Slider {
 		const x = e.offsetX;
 		const sliderWidth = this.slider.offsetWidth;
 		const percentage = x / sliderWidth;
-		const index = Math.floor(percentage * (this.images.length * 2));
+		const index = Math.floor(percentage * this.images.length);
 
 		if (index > this.images.length - 1) return;
 
