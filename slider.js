@@ -14,6 +14,7 @@ class Slider {
 		this.currentIndex = 0;
 		this.options = {
 			lazyload: options.lazyload || false,
+			threshold: options.threshold || 1.0
 		};
 
 		if (this.options.lazyload) this.lazyLoadImages(this.images[0]);
@@ -95,11 +96,12 @@ class Slider {
 		cancelAnimationFrame(this.animationID);
 		this.isDragging = false;
 		const movedBy = this.currentTranslate - this.prevTranslate;
+		console.log(-(this.options.threshold * 100));
 
-		if (movedBy < -100 && this.currentIndex < this.images.length - 1)
+		if (movedBy < -(this.options.threshold * 100) && this.currentIndex < this.images.length - 1)
 			this.currentIndex += 1;
 
-		if (movedBy > 100 && this.currentIndex > 0) this.currentIndex -= 1;
+		if (movedBy > (this.options.threshold * 100) && this.currentIndex > 0) this.currentIndex -= 1;
 
 		if (this.options.lazyload)
 			this.lazyLoadImages(this.images[this.currentIndex]);
