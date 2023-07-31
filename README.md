@@ -9,7 +9,7 @@ Touch => Swipe.
 ```javascript
 		new Slider(selector, {
 			lazyload: true,
-            threshold: 1.90
+            threshold: 1.00
 		});
 ```
 
